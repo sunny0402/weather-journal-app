@@ -1,0 +1,32 @@
+// //Example OpenWeather Request
+// const API_URL = "https://api.openweathermap.org/";
+// const APP_ID = "8ab2628f3b9e331bc037af30aa920fad"; // for example;
+// const ZIP = "10001";
+
+// function fetchWeather() {
+//   fetch(`${API_URL}/data/2.5/weather?zip=${ZIP}&units=imperial&appid=${APP_ID}`)
+//     .then(function (response) {
+//       const data = response.json();
+//       console.log(data);
+//       return data;
+//     })
+//     .then(function (data) {
+//       console.log(data.main);
+//       return data.main;
+//     });
+// }
+
+// fetchWeather();
+
+
+//Example grid set up
+//https://css-tricks.com/snippets/css/complete-guide-grid/
+.container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "header header header header"
+    "main main . sidebar"
+    "footer footer footer footer";
+}

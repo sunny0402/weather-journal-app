@@ -1,0 +1,184 @@
+body {
+  background: #1c1f24;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#app {
+  /* outline: 3px solid red; */
+
+  display: grid;
+  grid-template-rows:
+    [first] auto
+    [line2] 10%
+    [line3] 20%
+    [line4] 25%
+    [line5] auto [end];
+  /* grid-auto-rows: minmax(150px, auto); */
+  /* grid-template-columns: [col1] 50% [col2] 50% [end]; */
+  height: 100vh;
+  width: 100%;
+  /* background:#E1E2E2; */
+  background: #1c1f24;
+  /* background: #fff; */
+  color: #d75813;
+  justify-content: center;
+  grid-gap: 3em;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  overflow: hidden;
+}
+
+.holder {
+  /* outline: 3px solid blue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.headline {
+  /* grid-row-start + grid-column-start + grid-row-end + grid-column-end: */
+  grid-area: 1/1/2/1;
+  font-size: 27px;
+}
+
+.zip {
+  grid-area: 2/1/3/1;
+}
+
+.feel {
+  grid-area: 3/1/4/1;
+}
+
+.title {
+  grid-area: 4/1/5/1;
+  margin: 3px 3px 3px 3px;
+  font-size: 27px;
+  z-index: 100;
+  text-align: center;
+}
+
+.entry {
+  grid-area: 4/1/5/1;
+  /* outline: 5px solid orange; */
+  background: #5b6073;
+  font-family: "Oswald", sans-serif;
+}
+
+.footer {
+  grid-area: 5/1 / end/1;
+}
+
+#entryHolder {
+  width: 100%;
+  height: 100%;
+  color: #f0d43a;
+  font-size: 20px;
+}
+
+#date {
+  margin-bottom: 1em;
+}
+
+#temp {
+  margin-bottom: 1em;
+}
+
+#content {
+  margin-bottom: 1em;
+}
+
+.footer-content {
+  width: 100%;
+  /* height: 12rem; */
+  outline: solid red 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: sans-serif;
+  opacity: 87%;
+}
+.social-list a {
+  margin-right: 5px;
+  color: #fff;
+}
+.social-list a:hover {
+  cursor: pointer;
+}
+
+/* font awesome icon */
+.social-list i {
+  font-size: 24px;
+  margin-right: 5px;
+  /* margin-bottom: 1em; */
+}
+
+.copyright {
+  font-size: 14px;
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label {
+  display: block;
+  font-size: 27px;
+}
+
+input {
+  display: block;
+  height: 60px;
+  width: 300px;
+  background: #5b6073;
+  color: #f0d43a;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  border: none;
+}
+
+button {
+  width: 300px;
+  height: 60px;
+  background: #ab0000;
+  color: #f0d43a;
+  font-size: 26px;
+  font-family: "Oswald", sans-serif;
+  border: none;
+  box-shadow: 2px 4px 5px #444;
+}
+h1 {
+  font-size: 36px;
+}
+
+textarea {
+  background: #5b6073;
+  color: #f0d43a;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  height: 150px;
+  margin-bottom: 3px;
+}
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+/* Style for Placeholder Text*/
+::placeholder {
+  /* Firefox, Chrome, Opera */
+  color: #f0d43a;
+  font-family: "Oswald", sans-serif;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #f0d43a;
+  font-family: "Oswald", sans-serif;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #f0d43a;
+  font-family: "Oswald", sans-serif;
+}
