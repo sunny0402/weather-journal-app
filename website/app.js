@@ -104,12 +104,6 @@ async function userInputGetPostUpdate() {
   console.log("click event registered");
   user_zip = document.getElementById("zip").value;
 
-  // getWeather(base_url, user_zip, api_key).then(function (data2save) {
-  //   postData("/postData", data2save).then(function (lastEntry) {
-  //     updateDOM(lastEntry);
-  //   });
-  // });
-
   getWeather(base_url, user_zip, api_key).then(function (data2save) {
     postData("/postData", data2save).then(function () {
       updateDOM();
