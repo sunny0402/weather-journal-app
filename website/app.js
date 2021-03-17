@@ -7,10 +7,14 @@ let user_zip = "";
 const api_key = "8ab2628f3b9e331bc037af30aa920fad";
 
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 //GET weather data
 async function getWeather(a_base_url, a_zip, an_api_key) {
+  //validate zip
+  if (!Number.isInteger(parseInt(a_zip))) {
+    alert("Enter a valid ZIP code");
+  }
   try {
     let request_url =
       a_base_url +
@@ -59,25 +63,37 @@ async function postData(url, data = {}) {
     console.log("postData : data posted to server and response received");
     console.log("postData : data on server... \n", serverData);
 
-    const lastEntry = serverData[Object.keys(serverData).length - 1];
-    console.log("postData : lastEntry", lastEntry);
-    return lastEntry;
+    // Not using serverData, making a seperate get request in updateDOM() to get server data
+    return serverData;
   } catch (error) {
     console.log("error", error);
   }
 }
 
-//update DOM
-async function updateDOM(data_from_server) {
-  console.log("updateDOM: ... data to display \n", data_from_server);
+//get data from server and then update DOM
+async function updateDOM() {
   const last_temp = document.getElementById("temp");
   const last_date = document.getElementById("date");
   const last_content = document.getElementById("content");
 
-  let object_values = Object.values(data_from_server);
-  last_date.innerHTML = `<p>Date: ${object_values[1]}</p>`;
-  last_temp.innerHTML = `<p>Temperature: ${object_values[0]}<span>&#176;</span>C</p>`;
-  last_content.innerHTML = `<p>Notes: ${object_values[2]}</p>`;
+  const response = await fetch("/getData");
+
+  try {
+    const allData = await response.json();
+    console.log("updateDOM, allData", allData);
+
+    //get last entry, which will be displayed
+    const lastEntry = allData[Object.keys(allData).length - 1];
+    console.log("updateDOM: lastEntry", lastEntry);
+
+    let object_values = Object.values(lastEntry);
+
+    last_date.innerHTML = `<p>Date: ${object_values[1]}</p>`;
+    last_temp.innerHTML = `<p>Temperature: ${object_values[0]}<span>&#176;</span>C</p>`;
+    last_content.innerHTML = `<p>Notes: ${object_values[2]}</p>`;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 document
@@ -87,11 +103,16 @@ document
 async function userInputGetPostUpdate() {
   console.log("click event registered");
   user_zip = document.getElementById("zip").value;
-  // validate that there is a zip value
+
+  // getWeather(base_url, user_zip, api_key).then(function (data2save) {
+  //   postData("/postData", data2save).then(function (lastEntry) {
+  //     updateDOM(lastEntry);
+  //   });
+  // });
 
   getWeather(base_url, user_zip, api_key).then(function (data2save) {
-    postData("/postData", data2save).then(function (lastEntry) {
-      updateDOM(lastEntry);
+    postData("/postData", data2save).then(function () {
+      updateDOM();
     });
   });
 }
